@@ -1,0 +1,18 @@
+{
+  "username": "user_anon_e8e61cae",
+  "email": "anon_e8e61cae@example.com",
+  "host": "ml-gpu-cluster-03.cs.university.edu",
+  "program": "/home/dir_anon_bd84e49c/dir_anon_537fab55/dir_anon_3f66a366/dir_anon_78c4e425",
+  "args": [
+    "--data",
+    "/dir_anon_7a889f48/dir_anon_bd84e49c/dir_anon_b91802da",
+    "--output",
+    "/dir_anon_ea3961b9/dir_anon_bd84e49c/dir_anon_c766ff95"
+  ],
+  "git": {
+    "remote": "anon_22f2d4ba@example.com:research-lab/dir_anon_066d4f19",
+    "commit": "a1b2c3d4e5f6789012345678901234567890abcd"
+  },
+  "phone": "+1-555-123-4567",
+  "employee_id": "EMP-123456"
+}

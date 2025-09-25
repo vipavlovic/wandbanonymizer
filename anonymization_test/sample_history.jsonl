@@ -1,0 +1,2 @@
+{"_step": 1, "loss": 2.345, "user": "jane.researcher", "data_path": "/datasets/jane/batch_001.json", "host": "gpu-node-07.cluster.university.edu"}
+{"_step": 2, "loss": 2.234, "user": "jane.researcher", "data_path": "/datasets/jane/batch_002.json", "host": "gpu-node-07.cluster.university.edu", "api_key": "sk-1234567890abcdef1234567890abcdef"}

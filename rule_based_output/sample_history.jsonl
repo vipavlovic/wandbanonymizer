@@ -1,0 +1,2 @@
+{"_step": 1, "loss": 2.345, "user": "user_anon_e8e61cae", "data_path": "/dir_anon_7a889f48/dir_anon_bd84e49c/dir_anon_434ce3a8", "host": "gpu-node-07.cluster.university.edu"}
+{"_step": 2, "loss": 2.234, "user": "user_anon_e8e61cae", "data_path": "/dir_anon_7a889f48/dir_anon_bd84e49c/dir_anon_4c7f1a46", "host": "gpu-node-07.cluster.university.edu", "api_key": "sk-1234567890abcdef1234567890abcdef"}

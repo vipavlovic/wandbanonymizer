@@ -1,0 +1,18 @@
+{
+  "b279e42f": "user_d3611223",
+  "user_99dd5fb9": "user_a7d1badc@example.com",
+  "user_08785f67": "host-cf3ce9b2.example.com",
+  "user_96e11096": "/anonymized/path_ed6bc75c",
+  "user_8bd34dc5": [
+    "--user_83a76b9c",
+    "/anonymized/path_1b275c2a",
+    "--user_6591340b",
+    "/anonymized/path_018a1888"
+  ],
+  "user_fd93e171": {
+    "user_9727b222": "https://example.com/repo_43cc0107",
+    "user_18736af4": "sk-06b08f90xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  },
+  "user_dcb56a24": "+1-555-123-4567",
+  "user_e767f6d9": "user_b15c83d4"
+}

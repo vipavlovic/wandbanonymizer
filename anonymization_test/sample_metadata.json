@@ -1,0 +1,18 @@
+{
+  "username": "jane.researcher",
+  "email": "jane.researcher@university.edu",
+  "host": "ml-gpu-cluster-03.cs.university.edu",
+  "program": "/home/jane/experiments/transformer/train.py",
+  "args": [
+    "--data",
+    "/datasets/jane/nlp_corpus/",
+    "--output",
+    "/results/jane/run_001/"
+  ],
+  "git": {
+    "remote": "git@github.com:research-lab/transformer-experiments.git",
+    "commit": "a1b2c3d4e5f6789012345678901234567890abcd"
+  },
+  "phone": "+1-555-123-4567",
+  "employee_id": "EMP-123456"
+}
