@@ -1,0 +1,14 @@
+# misc
+.DS_Store
+.env
+.env.local
+.env.*.local
+
+# macOS system files
+Icon?
+
+.vscode/
+
+# Logs
+*.log
+
