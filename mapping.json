@@ -1,0 +1,36 @@
+{
+  "usernames": {
+    "beomi": "user_anon_17a2d602"
+  },
+  "projects": {},
+  "entities": {},
+  "run_ids": {},
+  "emails": {
+    "beomi@kakao.com": "anon_17a2d602@example.com"
+  },
+  "paths": {
+    "/workspace/llama/llama-7b": "/dir_anon_8c791ad1/dir_anon_1563baf3/dir_anon_133dbad2",
+    "./alpaca_data.json": "dir_anon_57304d7b",
+    "./KoAlpaca": "dir_anon_8817da0d",
+    "/17/2023": "/dir_anon_f03e2669/dir_anon_9f3e388f",
+    "/evaluation": "/dir_anon_f806f0ba",
+    "/alpaca_data.json,": "/dir_anon_983c8532",
+    "/KoAlpaca/runs/Mar17_11-47-45_training-server-01,": "/dir_anon_8817da0d/dir_anon_bc763711/dir_anon_b7982a4e",
+    "/KoAlpaca,": "/dir_anon_98958e3c",
+    "/alpaca_data.json": "/dir_anon_57304d7b",
+    "/home/jovyan/.cache/huggingface/datasets/json/default-abc123/0.0.0/cache-def456.arrow": "/home/dir_anon_08fb5c01/.cache/dir_anon_a5a0f92d/dir_anon_7a889f48/dir_anon_05009b13/dir_anon_eb5ce014/dir_anon_af2b718f/dir_anon_2a0e5928",
+    "/koalpaca/run-aec4e8fe": "/dir_anon_feacfbd3/dir_anon_672b8912",
+    "/wandb.ai/beomi/koalpaca/runs/e129917d": "/dir_anon_b43adddd/dir_anon_17a2d602/dir_anon_feacfbd3/dir_anon_bc763711/dir_anon_9ca2647f",
+    "/KoAlpaca/checkpoint-2000": "/dir_anon_8817da0d/dir_anon_0c99ea99",
+    "/KoAlpaca/checkpoint-2000/tokenizer_config.json": "/dir_anon_8817da0d/dir_anon_0c99ea99/dir_anon_ccaca22d",
+    "/KoAlpaca/checkpoint-2000/special_tokens_map.json": "/dir_anon_8817da0d/dir_anon_0c99ea99/dir_anon_f0ebe94f",
+    "/KoAlpaca/": "/dir_anon_8817da0d",
+    "/wandb.ai/beomi/koalpaca/runs/3ce726e0": "/dir_anon_b43adddd/dir_anon_17a2d602/dir_anon_feacfbd3/dir_anon_bc763711/dir_anon_cf61f715",
+    "/opt/conda/envs/koalpaca-env": "/opt/dir_anon_fb7532ff/dir_anon_e001c0c2/dir_anon_85726146",
+    "/KoAlpaca": "/dir_anon_8817da0d",
+    "/home/jovyan/work/train.py": "/home/dir_anon_08fb5c01/dir_anon_533e9d53/dir_anon_78c4e425",
+    "train.py": "dir_anon_78c4e425",
+    "/home/jovyan/work": "/home/dir_anon_08fb5c01/dir_anon_533e9d53",
+    "/opt/conda/bin/python": "/opt/dir_anon_fb7532ff/dir_anon_722d6da7/dir_anon_c2461425"
+  }
+}

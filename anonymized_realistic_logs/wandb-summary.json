@@ -1,0 +1,26 @@
+{
+  "train/epoch": 3.0,
+  "train/global_step": 3000,
+  "train/learning_rate": 0.0,
+  "train/loss": 1.234,
+  "train/total_flos": 3.7035e+21,
+  "train/train_loss": 1.234,
+  "train/train_runtime": 7500.0,
+  "train/train_samples_per_second": 2.048,
+  "train/train_steps_per_second": 0.512,
+  "eval/loss": 1.456,
+  "eval/perplexity": 4.29,
+  "eval/runtime": 118.5,
+  "eval/samples_per_second": 10.2,
+  "eval/steps_per_second": 2.55,
+  "_runtime": 7500,
+  "_timestamp": 1758740828.840485,
+  "_step": 3000,
+  "system/gpu.0.gpu": 95.2,
+  "system/gpu.0.memory": 78.5,
+  "system/gpu.0.temp": 82.1,
+  "system/proc.memory.percent": 20.3,
+  "_wandb": {
+    "runtime": 7500
+  }
+}

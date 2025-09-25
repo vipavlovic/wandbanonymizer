@@ -1,0 +1,138 @@
+03/dir_anon_f03e2669/dir_anon_9f3e388f 11:47:45 - INFO - __main__ - Training/dir_anon_f806f0ba parameters:
+TrainingArguments(
+_n_gpu=8,
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+bf16=True,
+data_path=./dir_anon_983c8532
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_pin_memory=True,
+ddp_backend=None,
+ddp_find_unused_parameters=None,
+deepspeed=None,
+disable_tqdm=None,
+do_eval=False,
+do_predict=False,
+do_train=True,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_steps=None,
+eval_strategy=no,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+full_determinism=False,
+gradient_accumulation_steps=8,
+gradient_checkpointing=False,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_inputs_for_metrics=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=2e-05,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=0,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=./dir_anon_8817da0d/dir_anon_bc763711/dir_anon_b7982a4e
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=1,
+logging_strategy=steps,
+lr_scheduler_type=cosine,
+max_grad_norm=1.0,
+max_steps=-1,
+metric_for_best_model=None,
+mp_parameters=,
+num_train_epochs=3.0,
+optim=adamw_hf,
+optim_args=None,
+output_dir=./dir_anon_98958e3c
+overwrite_output_dir=False,
+past_index=-1,
+per_device_eval_batch_size=4,
+per_device_train_batch_size=4,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=['wandb'],
+resume_from_checkpoint=None,
+run_name=koalpaca-polyglot-5.8b-v1.1b,
+save_on_each_node=False,
+save_only_model=False,
+save_safetensors=False,
+save_steps=2000,
+save_strategy=steps,
+save_total_limit=1,
+seed=42,
+sharded_ddp=[],
+skip_memory_metrics=True,
+tf32=None,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_mps_device=False,
+warmup_ratio=0.03,
+warmup_steps=0,
+weight_decay=0.0,
+)
+
+03/dir_anon_f03e2669/dir_anon_9f3e388f 11:47:46 - INFO - __main__ - Loading dataset from ./dir_anon_57304d7b
+03/dir_anon_f03e2669/dir_anon_9f3e388f 11:47:47 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/dir_anon_08fb5c01/.cache/dir_anon_a5a0f92d/dir_anon_7a889f48/dir_anon_05009b13/dir_anon_eb5ce014/dir_anon_af2b718f/dir_anon_2a0e5928
+03/dir_anon_f03e2669/dir_anon_9f3e388f 11:47:48 - INFO - __main__ - Dataset loaded: 52002 examples
+03/dir_anon_f03e2669/dir_anon_9f3e388f 11:47:48 - INFO - __main__ - Tokenizing dataset...
+03/dir_anon_f03e2669/dir_anon_9f3e388f 11:49:23 - INFO - __main__ - Tokenization complete. Max length: 2048
+03/dir_anon_f03e2669/dir_anon_9f3e388f 11:49:24 - INFO - __main__ - Starting training...
+
+03/dir_anon_f03e2669/dir_anon_9f3e388f 11:49:25 - INFO - transformers.trainer - The following columns in the training set don't have a corresponding argument in `LlamaForCausalLM.forward` and have been ignored: instruction, input, output. If instruction, input, output are not expected by `LlamaForCausalLM.forward`,  you can safely ignore this message.
+03/dir_anon_f03e2669/dir_anon_9f3e388f 11:49:25 - INFO - transformers.trainer - ***** Running training *****
+03/dir_anon_f03e2669/dir_anon_9f3e388f 11:49:25 - INFO - transformers.trainer -   Num examples = 52,002
+03/dir_anon_f03e2669/dir_anon_9f3e388f 11:49:25 - INFO - transformers.trainer -   Num Epochs = 3
+03/dir_anon_f03e2669/dir_anon_9f3e388f 11:49:25 - INFO - transformers.trainer -   Instantaneous batch size per device = 4
+03/dir_anon_f03e2669/dir_anon_9f3e388f 11:49:25 - INFO - transformers.trainer -   Total train batch size (w. parallel, distributed & accumulation) = 256
+03/dir_anon_f03e2669/dir_anon_9f3e388f 11:49:25 - INFO - transformers.trainer -   Gradient Accumulation steps = 8
+03/dir_anon_f03e2669/dir_anon_9f3e388f 11:49:25 - INFO - transformers.trainer -   Total optimization steps = 609
+
+03/dir_anon_f03e2669/dir_anon_9f3e388f 11:49:26 - INFO - wandb.wandb_torch - Watching model with wandb.
+03/dir_anon_f03e2669/dir_anon_9f3e388f 11:49:26 - INFO - wandb.wandb_run - Run initialized: beomi/dir_anon_feacfbd3/dir_anon_672b8912
+03/dir_anon_f03e2669/dir_anon_9f3e388f 11:49:26 - INFO - wandb.wandb_run - Logging to https://dir_anon_b43adddd/dir_anon_17a2d602/dir_anon_feacfbd3/dir_anon_bc763711/dir_anon_9ca2647f
+
+03/dir_anon_f03e2669/dir_anon_9f3e388f 11:49:27 - INFO - transformers.trainer - Training started!
+03/dir_anon_f03e2669/dir_anon_9f3e388f 11:49:30 - INFO - transformers.trainer - {'loss': 2.1234, 'learning_rate': 1.9876e-05, 'epoch': 0.01, 'step': 1}
+03/dir_anon_f03e2669/dir_anon_9f3e388f 11:49:33 - INFO - transformers.trainer - {'loss': 2.1145, 'learning_rate': 1.9852e-05, 'epoch': 0.01, 'step': 2}
+03/dir_anon_f03e2669/dir_anon_9f3e388f 11:49:36 - INFO - transformers.trainer - {'loss': 2.1067, 'learning_rate': 1.9829e-05, 'epoch': 0.01, 'step': 3}
+...
+
+03/dir_anon_f03e2669/dir_anon_9f3e388f 14:32:15 - INFO - transformers.trainer - Saving model checkpoint to ./dir_anon_8817da0d/dir_anon_0c99ea99
+03/dir_anon_f03e2669/dir_anon_9f3e388f 14:32:15 - INFO - transformers.tokenization_utils_base - tokenizer config file saved in ./dir_anon_8817da0d/dir_anon_0c99ea99/dir_anon_ccaca22d
+03/dir_anon_f03e2669/dir_anon_9f3e388f 14:32:15 - INFO - transformers.tokenization_utils_base - Special tokens file saved in ./dir_anon_8817da0d/dir_anon_0c99ea99/dir_anon_f0ebe94f
+
+03/dir_anon_f03e2669/dir_anon_9f3e388f 17:14:28 - INFO - transformers.trainer - ***** Training completed *****
+03/dir_anon_f03e2669/dir_anon_9f3e388f 17:14:28 - INFO - transformers.trainer - Total training time: 7500.123 seconds
+03/dir_anon_f03e2669/dir_anon_9f3e388f 17:14:28 - INFO - transformers.trainer - Training loss: 1.234
+03/dir_anon_f03e2669/dir_anon_9f3e388f 17:14:29 - INFO - __main__ - Model saved to ./dir_anon_8817da0d
+03/dir_anon_f03e2669/dir_anon_9f3e388f 17:14:30 - INFO - wandb.wandb_run - Run finished successfully. View at https://dir_anon_b43adddd/dir_anon_17a2d602/dir_anon_feacfbd3/dir_anon_bc763711/dir_anon_cf61f715

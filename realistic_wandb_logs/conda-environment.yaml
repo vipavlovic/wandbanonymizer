@@ -1,0 +1,32 @@
+name: koalpaca-env
+channels:
+  - pytorch
+  - nvidia
+  - huggingface
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10.8
+  - pytorch=2.0.0
+  - pytorch-cuda=11.7
+  - cudatoolkit=11.7
+  - numpy=1.24.2
+  - pip=23.0.1
+  - pip:
+    - transformers==4.28.0.dev0
+    - datasets==2.10.1
+    - accelerate==0.18.0
+    - wandb==0.14.0
+    - tokenizers==0.13.2
+    - huggingface-hub==0.13.3
+    - safetensors==0.3.0
+    - scikit-learn==1.2.2
+    - scipy==1.10.1
+    - pandas==1.5.3
+    - matplotlib==3.7.1
+    - seaborn==0.12.2
+    - tensorboard==2.12.1
+    - protobuf==4.22.1
+    - psutil==5.9.4
+    - GPUtil==1.4.0
+prefix: /opt/conda/envs/koalpaca-env
