@@ -56,18 +56,18 @@ python test_anonymization.py
 
 ### Basic Installation (Rule-Based Only)
 ```bash
-git clone https://github.com/your-username/wandb-log-anonymizer.git
-cd wandb-log-anonymizer
+git clone https://github.com/vipavlovic/wandbanonymizer.git
+cd wandbanonymizer
 # No additional dependencies required!
 ```
 
 ### Enhanced Installation (With Presidio)
 ```bash
-git clone https://github.com/your-username/wandb-log-anonymizer.git
-cd wandb-log-anonymizer
+git clone https://github.com/vipavlovic/wandbanonymizer.git
+cd wandbanonymizer
 
 # Install Presidio for enhanced PII detection
-pip install presidio-analyzer presidio-anonymizer
+pip install -r requirements.txt
 
 # Install language model for better accuracy (recommended)
 python -m spacy download en_core_web_lg
@@ -447,11 +447,14 @@ We welcome contributions! Here are ways to help:
 
 ### 🔧 **Development Setup**
 ```bash
-git clone https://github.com/your-username/wandb-log-anonymizer.git
-cd wandb-log-anonymizer
+git clone https://github.com/vipavlovic/wandbanonymizer.git
+cd wandbanonymizer
 
 # Install development dependencies
 pip install -r requirements-dev.txt
+
+# Download language model
+python -m spacy download en_core_web_lg
 
 # Run tests
 python -m pytest tests/

@@ -1,0 +1,23 @@
+# W&B Log Anonymizer Requirements
+# Python 3.7+
+
+# Core dependencies (none required for basic anonymizer)
+# The basic wandb_anonymizer.py uses only Python standard library
+
+# Optional: Enhanced PII detection with Microsoft Presidio
+# Uncomment the following lines to enable Presidio-powered anonymization
+presidio-analyzer==2.2.354
+presidio-anonymizer==2.2.354
+
+# Presidio language models (required for Presidio)
+# Install separately with: python -m spacy download en_core_web_lg
+# Alternatives:
+#   - en_core_web_sm (small, faster, less accurate)
+#   - en_core_web_md (medium)
+#   - en_core_web_lg (large, recommended, most accurate)
+spacy>=3.0.0,<4.0.0
+
+# Development dependencies (for testing and comparison)
+# Uncomment if you want to run tests or comparison scripts
+# pytest>=7.0.0
+# pytest-cov>=4.0.0
