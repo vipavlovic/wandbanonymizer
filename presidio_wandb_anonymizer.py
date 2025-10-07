@@ -354,7 +354,25 @@ class PresidioWandBAnonymizer:
                                 anonymized_data = self.anonymize_json_object(data)
                                 out_f.write(json.dumps(anonymized_data, ensure_ascii=False) + '\n')
                 
+                elif input_path.suffix.lower() in ['.yaml', '.yml']:
+                    # Handle YAML files - anonymize specific fields only, preserve keys
+                    import yaml
+                    try:
+                        data = yaml.safe_load(f)
+                        anonymized_data = self.anonymize_yaml_object(data)
+                        
+                        with open(output_path, 'w', encoding='utf-8') as out_f:
+                            yaml.dump(anonymized_data, out_f, default_flow_style=False, allow_unicode=True)
+                    except Exception as e:
+                        print(f"Warning: Could not parse YAML, treating as text: {e}")
+                        f.seek(0)
+                        content = f.read()
+                        anonymized_content = self.analyze_and_anonymize_text(content)
+                        with open(output_path, 'w', encoding='utf-8') as out_f:
+                            out_f.write(anonymized_content)
+                
                 else:
+                    # Handle text files (logs, etc.)
                     content = f.read()
                     anonymized_content = self.analyze_and_anonymize_text(content)
                     
@@ -364,6 +382,45 @@ class PresidioWandBAnonymizer:
         except Exception as e:
             print(f"❌ Error processing {input_path}: {e}")
             raise
+    
+    def anonymize_yaml_object(self, obj: Any) -> Any:
+        """
+        Anonymize YAML objects selectively with Presidio.
+        IMPORTANT: Only anonymize VALUES, never keys (field names).
+        Only anonymize fields that likely contain PII (paths, names, emails).
+        Preserve technical configuration (hyperparameters, package names, etc.).
+        """
+        if isinstance(obj, dict):
+            result = {}
+            for key, value in obj.items():
+                # NEVER anonymize the key itself - preserve field names
+                # Only anonymize values in specific fields that may contain PII
+                if key in ['prefix', 'name', 'user', 'username', 'author', 'email', 'host', 'hostname']:
+                    if isinstance(value, str):
+                        result[key] = self.analyze_and_anonymize_text(value)
+                    else:
+                        result[key] = value
+                # Preserve other keys but recursively process nested structures
+                else:
+                    result[key] = self.anonymize_yaml_object(value)
+            return result
+        
+        elif isinstance(obj, list):
+            return [self.anonymize_yaml_object(item) for item in obj]
+        
+        elif isinstance(obj, str):
+            # Only anonymize strings that look like paths or emails in values
+            # Don't anonymize technical strings like package names (numpy==1.24.0)
+            if '@' in obj and '==' not in obj:  # Email but not package spec
+                return self.analyze_and_anonymize_text(obj)
+            elif '/' in obj or '\\' in obj:  # Paths
+                # Check if it's a package path (like site-packages) vs user path
+                if '/home/' in obj or '/Users/' in obj or 'C:\\Users\\' in obj:
+                    return self.analyze_and_anonymize_text(obj)
+            return obj
+        
+        else:
+            return obj
     
     def anonymize_directory(self, input_dir: str, output_dir: str = None):
         """Anonymize all supported files in a directory using Presidio."""
@@ -376,7 +433,8 @@ class PresidioWandBAnonymizer:
         
         output_dir.mkdir(parents=True, exist_ok=True)
         
-        supported_extensions = {'.json', '.jsonl', '.txt', '.log', '.yaml', '.yml'}
+        # Process JSON, JSONL, YAML, and LOG files
+        supported_extensions = {'.json', '.jsonl', '.yaml', '.yml', '.log', '.txt'}
         
         print(f"🔍 Scanning directory: {input_dir}")
         files_processed = 0

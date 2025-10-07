@@ -157,6 +157,45 @@ python presidio_wandb_anonymizer.py ./wandb-logs/ \
 
 ## 🔒 What Gets Anonymized
 
+### W&B File Types
+
+W&B creates several types of files during experiment tracking. Here's what gets anonymized in each:
+
+#### **JSON Files** (`wandb-metadata.json`, `wandb-summary.json`)
+**Contains:** Run metadata, system info, user details, git information
+**What gets anonymized:**
+- ✅ Usernames, emails, author names
+- ✅ Hostnames, server names
+- ✅ File paths with user directories
+- ✅ Git repository URLs and author info
+- ✅ Run IDs (with consistent mapping)
+- ⏭️ **Preserved:** Commit hashes, timestamps, metrics, hyperparameters
+
+#### **JSONL Files** (`wandb-history.jsonl`)
+**Contains:** Time-series metrics logged during training
+**What gets anonymized:**
+- ✅ User fields, hostnames in logged data
+- ✅ File paths in data_path fields
+- ⏭️ **Preserved:** All metrics (loss, accuracy, etc.), step numbers, timestamps
+
+#### **YAML Files** (`config.yaml`, `conda-environment.yaml`)
+**Contains:** Experiment configuration, environment specifications
+**What gets anonymized:**
+- ✅ Environment name (if contains user info)
+- ✅ `prefix` field (contains local paths with usernames)
+- ✅ User/author fields
+- ⏭️ **Preserved:** Hyperparameters, package dependencies, versions, technical settings
+
+#### **Log Files** (`output.log`)
+**Contains:** Console output from training (stdout/stderr)
+**What gets anonymized:**
+- ✅ Usernames mentioned in logs
+- ✅ Email addresses
+- ✅ File paths with user directories
+- ✅ Hostnames and server names
+- ✅ IP addresses
+- ⏭️ **Preserved:** Training metrics, error messages (without PII), technical logs
+
 ### Personal Information
 - **Names**: `John Doe` → `Person_a1b2c3d4`
 - **Emails**: `user@company.com` → `anon_xyz123@example.com`
@@ -166,7 +205,7 @@ python presidio_wandb_anonymizer.py ./wandb-logs/ \
 ### System & Technical Data
 - **File paths**: `/home/user/project/` → `/dir_anon_i8j9k0l1/dir_anon_m2n3o4p5/`
 - **Hostnames**: `server.company.com` → `host-anon123.example.com`
-- **Git repos**: `git@github.com:user/repo.git` → `https://example.com/repo_anon456`
+- **Git repos**: `git@github.com:user/repo.git` → `repo_anon456`
 - **API keys**: `sk-1234567890abcdef` → `sk-anon789xyz...`
 - **IP addresses**: `192.168.1.100` → `192.168.xxx.xxx`
 
@@ -176,9 +215,21 @@ python presidio_wandb_anonymizer.py ./wandb-logs/ \
 - **Entity names**: `acme-corp` → `entity_anon_e4f5g6h7`
 - **Usernames**: `john.doe` → `user_anon_a1b2c3d4`
 
+### What Gets Preserved
+
+**Experiment reproducibility is maintained:**
+- ✅ All hyperparameters (batch_size, learning_rate, etc.)
+- ✅ All metrics (loss, accuracy, F1, etc.)
+- ✅ Model architectures (bert, gpt2, resnet50, etc.)
+- ✅ Optimizers and activations (adam, relu, etc.)
+- ✅ Package dependencies (numpy==1.24.0, pytorch==2.0.0)
+- ✅ Commit hashes (for code versioning)
+- ✅ Timestamps and step numbers
+- ✅ Technical configurations (fp16, cuda, batch_size)
+
 ## 📝 Examples
 
-### Example 1: Basic W&B Metadata
+### Example 1: W&B Metadata File
 
 **Original `wandb-metadata.json`:**
 ```json
@@ -188,7 +239,9 @@ python presidio_wandb_anonymizer.py ./wandb-logs/ \
   "host": "ml-server-01.company.com",
   "program": "/home/john/experiments/train.py",
   "git": {
-    "remote": "git@github.com:acme-corp/ml-project.git"
+    "remote": "git@github.com:acme-corp/ml-project.git",
+    "commit": "a1b2c3d4e5f6789012345678901234567890abcd",
+    "author": "John Doe"
   }
 }
 ```
@@ -198,17 +251,111 @@ python presidio_wandb_anonymizer.py ./wandb-logs/ \
 {
   "username": "user_anon_a1b2c3d4",
   "email": "anon_e5f6g7h8@example.com",
-  "host": "host-anon123.example.com", 
+  "host": "host_anon_i9j0k1l2", 
   "program": "/dir_anon_m3n4o5p6/dir_anon_q7r8s9t0/anon_u1v2w3x4",
   "git": {
-    "remote": "https://example.com/repo_anon456"
+    "remote": "repo_anon_y5z6a7b8",
+    "commit": "a1b2c3d4e5f6789012345678901234567890abcd",
+    "author": "user_anon_c9d0e1f2"
   }
 }
 ```
 
-### Example 2: Complex Training Log
+### Example 2: Config YAML File
 
-**Original:**
+**Original `config.yaml`:**
+```yaml
+learning_rate:
+  desc: null
+  value: 0.001
+batch_size:
+  desc: null
+  value: 32
+_wandb:
+  desc: null
+  value:
+    username: john.smith
+    project: secret-ml-project
+    python_version: 3.10.8
+```
+
+**Anonymized:**
+```yaml
+learning_rate:
+  desc: null
+  value: 0.001              # ✅ Preserved
+batch_size:
+  desc: null
+  value: 32                 # ✅ Preserved
+_wandb:
+  desc: null
+  value:
+    username: user_anon_abc123
+    project: proj_anon_def456
+    python_version: 3.10.8  # ✅ Preserved
+```
+
+### Example 3: Conda Environment File
+
+**Original `conda-environment.yaml`:**
+```yaml
+name: johns-ml-env
+channels:
+  - pytorch
+  - defaults
+dependencies:
+  - python=3.10.8
+  - pytorch=2.0.0
+  - numpy=1.24.2
+  - pip:
+    - wandb==0.14.0
+    - transformers==4.28.0
+prefix: /home/john.smith/anaconda3/envs/johns-ml-env
+```
+
+**Anonymized:**
+```yaml
+name: johns-ml-env        # ✅ May be preserved or anonymized
+channels:
+  - pytorch               # ✅ Preserved
+  - defaults              # ✅ Preserved
+dependencies:
+  - python=3.10.8         # ✅ Preserved
+  - pytorch=2.0.0         # ✅ Preserved
+  - numpy=1.24.2          # ✅ Preserved
+  - pip:
+    - wandb==0.14.0       # ✅ Preserved
+    - transformers==4.28.0  # ✅ Preserved
+prefix: /dir_anon_ghi789/dir_anon_jkl012/dir_anon_mno345
+```
+
+### Example 4: Training Log File
+
+**Original `output.log`:**
+```
+2024-01-15 10:30:00 - INFO - Starting training run
+2024-01-15 10:30:00 - INFO - User: john.smith
+2024-01-15 10:30:00 - INFO - Email: john.smith@company.com
+2024-01-15 10:30:01 - INFO - Loading data from /home/john.smith/datasets/train.csv
+2024-01-15 10:30:02 - INFO - Running on ml-gpu-cluster-01.company.com
+2024-01-15 10:30:03 - INFO - Epoch 1/10 - Loss: 2.345 - Accuracy: 0.456
+2024-01-15 10:30:10 - INFO - Saving checkpoint to /home/john.smith/checkpoints/model_001.pt
+```
+
+**Anonymized:**
+```
+2024-01-15 10:30:00 - INFO - Starting training run
+2024-01-15 10:30:00 - INFO - User: user_anon_abc123
+2024-01-15 10:30:00 - INFO - Email: anon_def456@example.com
+2024-01-15 10:30:01 - INFO - Loading data from /dir_anon_ghi789/dir_anon_jkl012/anon_mno345
+2024-01-15 10:30:02 - INFO - Running on host_anon_pqr678
+2024-01-15 10:30:03 - INFO - Epoch 1/10 - Loss: 2.345 - Accuracy: 0.456
+2024-01-15 10:30:10 - INFO - Saving checkpoint to /dir_anon_stu901/dir_anon_vwx234/anon_yza567
+```
+
+### Example 5: Comparison - Rule-Based vs Presidio
+
+**Original Training Log:**
 ```
 2024-01-15 10:30:00 - Dr. Sarah Chen (s.chen@university.edu) started training
 Dataset: /scratch/users/sarah/imagenet_custom/train.tar.gz  
@@ -232,7 +379,7 @@ Server: host-jkl012.example.com (192.168.xxx.xxx)
 Phone: 555-mno-pqrs, Credit: XXXX-XXXX-XXXX-XXXX
 ```
 
-### Example 3: Compare Detection Results
+### Example 6: Compare Detection Results
 
 ```bash
 # Run comparison to see the difference
